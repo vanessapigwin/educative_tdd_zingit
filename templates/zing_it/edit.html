@@ -1,0 +1,25 @@
+{% extends "zing_it/base.html" %}
+{% load static %}
+{% block css %}{% static 'zing_it/css/songs.css' %}{% endblock %}
+
+{% block title %} Edit Song {% endblock %}
+
+{% block links %}
+<a href="{% url 'index' %}">Home</a>
+{% if user.is_authenticated %}
+<a href="{% url 'logout' %}">Log out</a>
+{% else %}
+<a href="{% url 'login' %}">Login</a>
+{% endif %}
+{% endblock %}
+
+{% block pagename %} Edit Song {% endblock %}
+{% block content %}
+<form method="POST">
+  {% csrf_token %}
+  <table>
+      {{form.as_table}}
+  </table>
+  <input type="submit" name= "btn" value="Submit">
+</form> 
+{% endblock %}
